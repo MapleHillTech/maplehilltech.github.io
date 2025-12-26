@@ -77,8 +77,16 @@ class ThemeManager {
         }
         
         // Keyboard shortcut for theme toggle (T key)
+        // Only when not typing in an input field
         document.addEventListener('keydown', (e) => {
-            if (e.key === 't' || e.key === 'T') {
+            const activeElement = document.activeElement;
+            const isInputField = activeElement && (
+                activeElement.tagName === 'INPUT' ||
+                activeElement.tagName === 'TEXTAREA' ||
+                activeElement.isContentEditable
+            );
+            
+            if (!isInputField && (e.key === 't' || e.key === 'T')) {
                 this.toggleTheme();
             }
         });
@@ -150,7 +158,7 @@ class EffectsManager {
         
         setTimeout(() => {
             if (trail.parentNode) {
-                trail.parentNode.removeChild(trail);
+                trail.remove();
             }
         }, 500);
     }
