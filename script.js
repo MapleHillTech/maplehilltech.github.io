@@ -112,12 +112,18 @@ class EffectsManager {
 
     setupCursorEffect() {
         // Create a custom cursor trail effect on mouse move
+        // Throttled to prevent excessive DOM manipulation
         let timeout;
+        let lastCall = 0;
+        const throttleDelay = 100; // milliseconds
+        
         document.addEventListener('mousemove', (e) => {
-            clearTimeout(timeout);
-            timeout = setTimeout(() => {
-                this.createCursorTrail(e.clientX, e.clientY);
-            }, 50);
+            const now = Date.now();
+            if (now - lastCall < throttleDelay) {
+                return;
+            }
+            lastCall = now;
+            this.createCursorTrail(e.clientX, e.clientY);
         });
     }
 
@@ -143,7 +149,9 @@ class EffectsManager {
         }, 10);
         
         setTimeout(() => {
-            document.body.removeChild(trail);
+            if (trail.parentNode) {
+                trail.parentNode.removeChild(trail);
+            }
         }, 500);
     }
 
