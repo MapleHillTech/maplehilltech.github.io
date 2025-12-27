@@ -1,14 +1,117 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title id="page-title"></title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
-    
-    <style>
+
+    <!-- SEO Meta Tags -->
+    <meta
+      name="description"
+      content="Michigan-based Holistic Product Management consulting. Serving Detroit, Grand Rapids, Ann Arbor, and throughout MI. Expert SDLC optimization, product engineering, and sustainable development for Michigan tech companies and startups."
+    />
+    <meta
+      name="keywords"
+      content="product management Michigan, holistic product management Detroit, SDLC optimization Michigan, product engineering Grand Rapids, software development lifecycle Ann Arbor, sustainable product development Michigan, product strategy Detroit, team health Michigan, product leadership MI, agile product management Michigan, product discovery Detroit, outcome-driven development Michigan, product consultant Michigan, tech consulting Detroit, startup consulting Michigan, Ann Arbor product management, Grand Rapids software consulting, Michigan tech companies, Detroit startups, Michigan product operations"
+    />
+    <meta name="geo.region" content="US-MI" />
+    <meta name="geo.placename" content="Michigan" />
+    <meta name="geo.position" content="42.7325;-84.5555" />
+    <meta name="ICBM" content="42.7325, -84.5555" />
+    <meta name="author" content="The Holistic Product Collective" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="English" />
+    <meta name="revisit-after" content="7 days" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://maplehilltech.github.io/" />
+    <meta
+      property="og:title"
+      content="Michigan Product Management Consulting | The Holistic Product Collective"
+    />
+    <meta
+      property="og:description"
+      content="Michigan-based product management consulting. Serving Detroit, Ann Arbor, Grand Rapids. Build products with soul and sustainable success through holistic SDLC optimization."
+    />
+    <meta
+      property="og:image"
+      content="https://maplehilltech.github.io/og-image.jpg"
+    />
+    <meta property="og:site_name" content="The Holistic Product Collective" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://maplehilltech.github.io/" />
+    <meta
+      property="twitter:title"
+      content="The Holistic Product Collective | Holistic Product Management"
+    />
+    <meta
+      property="twitter:description"
+      content="Build products with soul and sustainable success. Expert product management consulting for sustainable value creation."
+    />
+    <meta
+      property="twitter:image"
+      content="https://maplehilltech.github.io/twitter-image.jpg"
+    />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://maplehilltech.github.io/" />
+
+    <!-- Additional SEO -->
+    <meta name="theme-color" content="#0088cc" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+
+    <!-- Structured Data / Schema.org for Google -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "The Holistic Product Collective",
+        "description": "Holistic Product Management consulting services for sustainable product development and team well-being",
+        "url": "https://maplehilltech.github.io/",
+        "logo": "https://maplehilltech.github.io/logo.png",
+        "image": "https://maplehilltech.github.io/og-image.jpg",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "US"
+        },
+        "areaServed": "Worldwide",
+        "serviceType": [
+          "Product Management Consulting",
+          "SDLC Optimization",
+          "Product Engineering Consulting",
+          "Team Health & Sustainability",
+          "Product Strategy",
+          "Continuous Discovery"
+        ],
+        "knowsAbout": [
+          "Product Management",
+          "Software Development Lifecycle",
+          "Agile Methodologies",
+          "User Research",
+          "Product Strategy",
+          "Team Leadership",
+          "Sustainable Development"
+        ]
+      }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+      <style>
 :root {
     --bg-primary: #0a0e17;
     --bg-secondary: #12161f;
@@ -514,82 +617,82 @@ footer {
 
     </style>
 </head>
-<body>
+  <body>
     <div class="scan-line"></div>
     <div class="grid-overlay"></div>
 
     <div class="container">
-        <header>
-            <div class="logo">
-                <span class="bracket">[</span>
-                <span class="logo-text" id="logo-main"></span>
-                <span class="bracket">]</span>
+      <header>
+        <div class="logo">
+          <span class="bracket">[</span>
+          <span class="logo-text" id="logo-main"></span>
+          <span class="bracket">]</span>
+        </div>
+        <div class="tagline" id="tagline"></div>
+      </header>
+
+      <main>
+        <section class="hero">
+          <h1 class="glitch" id="hero-title"></h1>
+          <p class="subtitle" id="hero-subtitle"></p>
+        </section>
+
+        <section class="services">
+          <div class="service-card" data-perspective="engineering">
+            <div class="card-header">
+              <span class="icon">⟨/⟩</span>
+              <h2 id="service-eng-title"></h2>
             </div>
-            <div class="tagline" id="tagline"></div>
-        </header>
+            <ul id="service-eng-list"></ul>
+          </div>
 
-        <main>
-            <section class="hero">
-                <h1 class="glitch" id="hero-title"></h1>
-                <p class="subtitle" id="hero-subtitle"></p>
-            </section>
+          <div class="service-card" data-perspective="product">
+            <div class="card-header">
+              <span class="icon">◈</span>
+              <h2 id="service-prod-title"></h2>
+            </div>
+            <ul id="service-prod-list"></ul>
+          </div>
+        </section>
 
-            <section class="services">
-                <div class="service-card" data-perspective="engineering">
-                    <div class="card-header">
-                        <span class="icon">⟨/⟩</span>
-                        <h2 id="service-eng-title"></h2>
-                    </div>
-                    <ul id="service-eng-list"></ul>
-                </div>
+        <section class="approach">
+          <h2 class="section-title" id="approach-title"></h2>
+          <div class="phases">
+            <div class="phase">
+              <span class="phase-number">01</span>
+              <h3 id="phase-1-title"></h3>
+              <p id="phase-1-desc"></p>
+            </div>
+            <div class="phase">
+              <span class="phase-number">02</span>
+              <h3 id="phase-2-title"></h3>
+              <p id="phase-2-desc"></p>
+            </div>
+            <div class="phase">
+              <span class="phase-number">03</span>
+              <h3 id="phase-3-title"></h3>
+              <p id="phase-3-desc"></p>
+            </div>
+          </div>
+        </section>
 
-                <div class="service-card" data-perspective="product">
-                    <div class="card-header">
-                        <span class="icon">◈</span>
-                        <h2 id="service-prod-title"></h2>
-                    </div>
-                    <ul id="service-prod-list"></ul>
-                </div>
-            </section>
+        <section class="cta">
+          <h2 id="cta-title"></h2>
+          <button class="cta-button" id="contactBtn">
+            <span id="cta-button-text"></span>
+            <span class="arrow">→</span>
+          </button>
+        </section>
+      </main>
 
-            <section class="approach">
-                <h2 class="section-title" id="approach-title"></h2>
-                <div class="phases">
-                    <div class="phase">
-                        <span class="phase-number">01</span>
-                        <h3 id="phase-1-title"></h3>
-                        <p id="phase-1-desc"></p>
-                    </div>
-                    <div class="phase">
-                        <span class="phase-number">02</span>
-                        <h3 id="phase-2-title"></h3>
-                        <p id="phase-2-desc"></p>
-                    </div>
-                    <div class="phase">
-                        <span class="phase-number">03</span>
-                        <h3 id="phase-3-title"></h3>
-                        <p id="phase-3-desc"></p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="cta">
-                <h2 id="cta-title"></h2>
-                <button class="cta-button" id="contactBtn">
-                    <span id="cta-button-text"></span>
-                    <span class="arrow">→</span>
-                </button>
-            </section>
-        </main>
-
-        <footer>
-            <p id="footer-text"></p>
-        </footer>
+      <footer>
+        <p id="footer-text"></p>
+      </footer>
     </div>
 
     
     
-    <script>
+      <script>
 // Page Content Configuration
 const pageContent = {
   meta: {
