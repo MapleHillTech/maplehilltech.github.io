@@ -763,7 +763,7 @@ const pageContent = {
   },
 
   footer: {
-    text: "© 2025 The Holistic Product Collective. Building Products with Soul and Sustainable Success.",
+    text: "© 2025 The Holistic Product Collective. Building Products with Soul and Sustainable Success. A Maple Hill Tech Company. All rights reserved.",
   },
 };
 
@@ -835,172 +835,185 @@ if (typeof module !== "undefined" && module.exports) {
 
 
 // Smooth scroll behavior
-document.addEventListener('DOMContentLoaded', function() {
-    // Add entrance animations on scroll
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
+document.addEventListener("DOMContentLoaded", function () {
+  // Add entrance animations on scroll
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
+  };
 
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-
-    // Observe all animated elements
-    document.querySelectorAll('.service-card, .phase').forEach(el => {
-        observer.observe(el);
+  const observer = new IntersectionObserver(function (entries) {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = "1";
+        entry.target.style.transform = "translateY(0)";
+      }
     });
+  }, observerOptions);
 
-    // CTA Button interaction
-    const ctaButton = document.getElementById('contactBtn');
-    if (ctaButton) {
-        ctaButton.addEventListener('click', function() {
-            // Create a pulse effect
-            this.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                this.style.transform = 'scale(1)';
-            }, 100);
+  // Observe all animated elements
+  document.querySelectorAll(".service-card, .phase").forEach((el) => {
+    observer.observe(el);
+  });
 
-            // In a real implementation, this would open a contact form or mailto link
-            if (typeof pageContent !== 'undefined' && pageContent.cta && pageContent.cta.contactMessage) {
-                alert(pageContent.cta.contactMessage);
-            } else {
-                alert('Contact functionality would be implemented here.\n\nFor now, reach out to discuss optimizing your SDLC!');
-            }
-        });
-    }
+  // CTA Button interaction
+  const ctaButton = document.getElementById("contactBtn");
+  if (ctaButton) {
+    ctaButton.addEventListener("click", function () {
+      // Create a pulse effect
+      this.style.transform = "scale(0.95)";
+      setTimeout(() => {
+        this.style.transform = "scale(1)";
+      }, 100);
 
-    // Add parallax effect to grid overlay
-    let ticking = false;
-    const gridOverlay = document.querySelector('.grid-overlay');
+      // Open email client with pre-filled subject and body
+      const email = "info@maple-hill.tech";
+      const subject = encodeURIComponent("Holistic Product Consultation");
+      const body = encodeURIComponent(
+        "Please enter your name, contact information, and a high level introduction to the project and problems you would like to consult with us on.\n\nPlease be sure not to share IP or other sensitive information here. We value your company's property and security.",
+      );
 
-    window.addEventListener('scroll', function() {
-        if (!ticking) {
-            window.requestAnimationFrame(function() {
-                const scrolled = window.pageYOffset;
-                if (gridOverlay) {
-                    gridOverlay.style.transform = `translateY(${scrolled * 0.1}px)`;
-                }
-                ticking = false;
-            });
-            ticking = true;
+      window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+    });
+  }
+
+  // Add parallax effect to grid overlay
+  let ticking = false;
+  const gridOverlay = document.querySelector(".grid-overlay");
+
+  window.addEventListener("scroll", function () {
+    if (!ticking) {
+      window.requestAnimationFrame(function () {
+        const scrolled = window.pageYOffset;
+        if (gridOverlay) {
+          gridOverlay.style.transform = `translateY(${scrolled * 0.1}px)`;
         }
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+
+  // Service card hover effects
+  const serviceCards = document.querySelectorAll(".service-card");
+  serviceCards.forEach((card) => {
+    card.addEventListener("mouseenter", function () {
+      this.style.transition = "all 0.3s ease";
     });
 
-    // Service card hover effects
-    const serviceCards = document.querySelectorAll('.service-card');
-    serviceCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transition = 'all 0.3s ease';
-        });
+    card.addEventListener("mousemove", function (e) {
+      const rect = this.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
 
-        card.addEventListener('mousemove', function(e) {
-            const rect = this.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
 
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
+      const deltaX = (x - centerX) / centerX;
+      const deltaY = (y - centerY) / centerY;
 
-            const deltaX = (x - centerX) / centerX;
-            const deltaY = (y - centerY) / centerY;
-
-            this.style.transform = `
+      this.style.transform = `
                 translateY(-5px)
                 rotateY(${deltaX * 5}deg)
                 rotateX(${-deltaY * 5}deg)
             `;
-        });
-
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) rotateY(0) rotateX(0)';
-        });
     });
 
-    // Phase cards pulse effect on hover
-    const phases = document.querySelectorAll('.phase');
-    phases.forEach(phase => {
-        phase.addEventListener('mouseenter', function() {
-            const number = this.querySelector('.phase-number');
-            if (number) {
-                number.style.animation = 'pulse 0.5s ease-in-out';
-                setTimeout(() => {
-                    number.style.animation = '';
-                }, 500);
-            }
-        });
+    card.addEventListener("mouseleave", function () {
+      this.style.transform = "translateY(0) rotateY(0) rotateX(0)";
     });
+  });
 
-    // Random glitch effect on logo
-    const logo = document.querySelector('.logo-text');
-    if (logo) {
-        setInterval(() => {
-            if (Math.random() > 0.95) {
-                logo.style.animation = 'glitch-text 0.3s';
-                setTimeout(() => {
-                    logo.style.animation = '';
-                }, 300);
-            }
-        }, 2000);
-    }
-
-    // Cursor trail effect
-    let cursorTrail = [];
-    const trailLength = 5;
-
-    document.addEventListener('mousemove', function(e) {
-        cursorTrail.push({ x: e.clientX, y: e.clientY, time: Date.now() });
-
-        // Limit trail length
-        if (cursorTrail.length > trailLength) {
-            cursorTrail.shift();
-        }
+  // Phase cards pulse effect on hover
+  const phases = document.querySelectorAll(".phase");
+  phases.forEach((phase) => {
+    phase.addEventListener("mouseenter", function () {
+      const number = this.querySelector(".phase-number");
+      if (number) {
+        number.style.animation = "pulse 0.5s ease-in-out";
+        setTimeout(() => {
+          number.style.animation = "";
+        }, 500);
+      }
     });
+  });
 
-    // Clean up old trail points
+  // Random glitch effect on logo
+  const logo = document.querySelector(".logo-text");
+  if (logo) {
     setInterval(() => {
-        const now = Date.now();
-        cursorTrail = cursorTrail.filter(point => now - point.time < 200);
-    }, 50);
+      if (Math.random() > 0.95) {
+        logo.style.animation = "glitch-text 0.3s";
+        setTimeout(() => {
+          logo.style.animation = "";
+        }, 300);
+      }
+    }, 2000);
+  }
 
-    // Typing effect for tagline (subtle animation)
-    const tagline = document.querySelector('.tagline');
-    if (tagline) {
-        const text = tagline.textContent;
-        tagline.textContent = '';
-        tagline.style.opacity = '1';
+  // Cursor trail effect
+  let cursorTrail = [];
+  const trailLength = 5;
 
-        let i = 0;
-        const typingInterval = setInterval(() => {
-            if (i < text.length) {
-                tagline.textContent += text.charAt(i);
-                i++;
-            } else {
-                clearInterval(typingInterval);
-            }
-        }, 30);
+  document.addEventListener("mousemove", function (e) {
+    cursorTrail.push({ x: e.clientX, y: e.clientY, time: Date.now() });
+
+    // Limit trail length
+    if (cursorTrail.length > trailLength) {
+      cursorTrail.shift();
     }
+  });
 
-    // Easter egg: Konami code
-    let konamiCode = [];
-    const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+  // Clean up old trail points
+  setInterval(() => {
+    const now = Date.now();
+    cursorTrail = cursorTrail.filter((point) => now - point.time < 200);
+  }, 50);
 
-    document.addEventListener('keydown', function(e) {
-        konamiCode.push(e.key);
-        konamiCode = konamiCode.slice(-konamiSequence.length);
+  // Typing effect for tagline (subtle animation)
+  const tagline = document.querySelector(".tagline");
+  if (tagline) {
+    const text = tagline.textContent;
+    tagline.textContent = "";
+    tagline.style.opacity = "1";
 
-        if (konamiCode.join(',') === konamiSequence.join(',')) {
-            document.body.style.animation = 'rainbow 2s infinite';
-            setTimeout(() => {
-                document.body.style.animation = '';
-            }, 5000);
-        }
-    });
+    let i = 0;
+    const typingInterval = setInterval(() => {
+      if (i < text.length) {
+        tagline.textContent += text.charAt(i);
+        i++;
+      } else {
+        clearInterval(typingInterval);
+      }
+    }, 30);
+  }
+
+  // Easter egg: Konami code
+  let konamiCode = [];
+  const konamiSequence = [
+    "ArrowUp",
+    "ArrowUp",
+    "ArrowDown",
+    "ArrowDown",
+    "ArrowLeft",
+    "ArrowRight",
+    "ArrowLeft",
+    "ArrowRight",
+    "b",
+    "a",
+  ];
+
+  document.addEventListener("keydown", function (e) {
+    konamiCode.push(e.key);
+    konamiCode = konamiCode.slice(-konamiSequence.length);
+
+    if (konamiCode.join(",") === konamiSequence.join(",")) {
+      document.body.style.animation = "rainbow 2s infinite";
+      setTimeout(() => {
+        document.body.style.animation = "";
+      }, 5000);
+    }
+  });
 });
 
     </script>
