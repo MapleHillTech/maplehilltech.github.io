@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dual Perspective Consultancy | SDLC Excellence</title>
+    <title id="page-title"></title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
+    
     <style>
 :root {
     --bg-primary: #0a0e17;
@@ -43,9 +44,9 @@ body {
     left: 0;
     width: 100%;
     height: 2px;
-    background: linear-gradient(90deg, 
-        transparent 0%, 
-        var(--neon-cyan) 50%, 
+    background: linear-gradient(90deg,
+        transparent 0%,
+        var(--neon-cyan) 50%,
         transparent 100%);
     opacity: 0.3;
     animation: scan 8s linear infinite;
@@ -64,7 +65,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: 
+    background-image:
         linear-gradient(var(--grid) 1px, transparent 1px),
         linear-gradient(90deg, var(--grid) 1px, transparent 1px);
     background-size: 30px 30px;
@@ -311,8 +312,8 @@ header {
 .phase {
     text-align: center;
     padding: 2rem;
-    background: linear-gradient(135deg, 
-        rgba(0, 240, 255, 0.05) 0%, 
+    background: linear-gradient(135deg,
+        rgba(0, 240, 255, 0.05) 0%,
         rgba(157, 0, 255, 0.05) 100%);
     border: 1px solid var(--border);
     transition: all 0.3s ease;
@@ -447,132 +448,289 @@ footer {
     }
 }
 
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.6;
+    }
+}
+
+@keyframes glitch-text {
+    0%, 100% {
+        transform: translate(0);
+    }
+    25% {
+        transform: translate(-2px, 2px);
+    }
+    75% {
+        transform: translate(2px, -2px);
+    }
+}
+
+@keyframes rainbow {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .logo {
         font-size: 1.5rem;
     }
-    
+
     .bracket {
         font-size: 2rem;
     }
-    
+
     .hero h1 {
         font-size: 1.8rem;
     }
-    
+
     .subtitle {
         font-size: 1rem;
     }
-    
+
     .services {
         grid-template-columns: 1fr;
     }
-    
+
     .phases {
         grid-template-columns: 1fr;
     }
-    
+
     .cta h2 {
         font-size: 1.5rem;
     }
-    
+
     .cta-button {
         padding: 0.8rem 2rem;
         font-size: 0.9rem;
     }
 }
+
     </style>
 </head>
 <body>
     <div class="scan-line"></div>
     <div class="grid-overlay"></div>
-    
+
     <div class="container">
         <header>
             <div class="logo">
                 <span class="bracket">[</span>
-                <span class="logo-text">DUAL<span class="neon">PERSPECTIVE</span></span>
+                <span class="logo-text" id="logo-main"></span>
                 <span class="bracket">]</span>
             </div>
-            <div class="tagline">SDLC Optimization · Product Engineering Consulting</div>
+            <div class="tagline" id="tagline"></div>
         </header>
 
         <main>
             <section class="hero">
-                <h1 class="glitch" data-text="ELEVATE YOUR DEVELOPMENT CYCLE">
-                    ELEVATE YOUR DEVELOPMENT CYCLE
-                </h1>
-                <p class="subtitle">
-                    Two complementary viewpoints. One unified vision. <br>
-                    Expert guidance across your entire software development lifecycle.
-                </p>
+                <h1 class="glitch" id="hero-title"></h1>
+                <p class="subtitle" id="hero-subtitle"></p>
             </section>
 
             <section class="services">
                 <div class="service-card" data-perspective="engineering">
                     <div class="card-header">
                         <span class="icon">⟨/⟩</span>
-                        <h2>ENGINEERING PERSPECTIVE</h2>
+                        <h2 id="service-eng-title"></h2>
                     </div>
-                    <ul>
-                        <li>Architecture & technical debt assessment</li>
-                        <li>Development workflow optimization</li>
-                        <li>Code quality & testing strategies</li>
-                        <li>Infrastructure & deployment pipelines</li>
-                    </ul>
+                    <ul id="service-eng-list"></ul>
                 </div>
 
                 <div class="service-card" data-perspective="product">
                     <div class="card-header">
                         <span class="icon">◈</span>
-                        <h2>PRODUCT PERSPECTIVE</h2>
+                        <h2 id="service-prod-title"></h2>
                     </div>
-                    <ul>
-                        <li>Product strategy & roadmap validation</li>
-                        <li>Requirements & specification review</li>
-                        <li>Stakeholder alignment processes</li>
-                        <li>Feature prioritization frameworks</li>
-                    </ul>
+                    <ul id="service-prod-list"></ul>
                 </div>
             </section>
 
             <section class="approach">
-                <h2 class="section-title">OUR APPROACH</h2>
+                <h2 class="section-title" id="approach-title"></h2>
                 <div class="phases">
                     <div class="phase">
                         <span class="phase-number">01</span>
-                        <h3>Define</h3>
-                        <p>Analyze your requirements, goals, and current process maturity</p>
+                        <h3 id="phase-1-title"></h3>
+                        <p id="phase-1-desc"></p>
                     </div>
                     <div class="phase">
                         <span class="phase-number">02</span>
-                        <h3>Implement</h3>
-                        <p>Review technical execution, development practices, and delivery flow</p>
+                        <h3 id="phase-2-title"></h3>
+                        <p id="phase-2-desc"></p>
                     </div>
                     <div class="phase">
                         <span class="phase-number">03</span>
-                        <h3>Maintain</h3>
-                        <p>Evaluate sustainability, observability, and continuous improvement loops</p>
+                        <h3 id="phase-3-title"></h3>
+                        <p id="phase-3-desc"></p>
                     </div>
                 </div>
             </section>
 
             <section class="cta">
-                <h2>Ready to optimize your SDLC?</h2>
+                <h2 id="cta-title"></h2>
                 <button class="cta-button" id="contactBtn">
-                    <span>GET IN TOUCH</span>
+                    <span id="cta-button-text"></span>
                     <span class="arrow">→</span>
                 </button>
             </section>
         </main>
 
         <footer>
-            <p>© 2025 DualPerspective Consultancy. Bridging Engineering & Product Excellence.</p>
+            <p id="footer-text"></p>
         </footer>
     </div>
 
+    
+    
     <script>
+// Page Content Configuration
+const pageContent = {
+  meta: {
+    title: "The Holistic Product Collective | Holistic Product Management",
+  },
+
+  header: {
+    logoMain: 'HOLISTIC<span class="neon">PRODUCT</span>',
+    tagline: "Holistic Product Management · Sustainable Value · Team Health",
+  },
+
+  hero: {
+    title: "BEYOND FEATURES. BEYOND LAUNCHES.",
+    subtitle:
+      "Build Products with Soul and Sustainable Success. <br> We integrate user needs, business strategy, and team well-being into a single, cohesive product development lifecycle.",
+  },
+
+  services: {
+    engineering: {
+      title: "USER FOCUS & BUSINESS ALIGNMENT",
+      items: [
+        "Deep empathy and ethnographic research.",
+        "Clear ROI modeling and strategic alignment.",
+        "Shifting from reactive to proactive, purpose-driven innovation.",
+        "Moving beyond vanity metrics to measure true value creation.",
+      ],
+    },
+    product: {
+      title: "TEAM FOCUS & SUSTAINABLE PACE",
+      items: [
+        "Implementing sustainable pace and psychological safety practices.",
+        "Cross-functional sovereignty and shared ownership training.",
+        "Development Rhythm Coaching to prevent burnout.",
+        "Assessing current development friction points.",
+      ],
+    },
+  },
+
+  approach: {
+    title: "OUR CORE APPROACH: THE INTEGRATION FRAMEWORK",
+    phases: [
+      {
+        number: "01",
+        title: "Foundation & Discovery",
+        description:
+          'Define a clear North Star Metric, map the ecosystem, and assess team health to understand the "Why."',
+      },
+      {
+        number: "02",
+        title: "Intentional Development",
+        description:
+          "Shift to outcome-driven roadmapping and build integrated, continuous discovery habits for sustainable execution.",
+      },
+      {
+        number: "03",
+        title: "Scale & Stewardship",
+        description:
+          "Establish clear product lifecycle stewardship and re-calibrate to measure true value creation for long-term health.",
+      },
+    ],
+  },
+
+  cta: {
+    title: "Ready to Build Products that Matter?",
+    buttonText: "BOOK YOUR CONSULTATION",
+    contactMessage:
+      "Contact functionality would be implemented here.\\n\\nSchedule a free, 30-minute Product Ecosystem Consultation!",
+  },
+
+  footer: {
+    text: "© 2025 The Holistic Product Collective. Building Products with Soul and Sustainable Success.",
+  },
+};
+
+// Populate page content
+document.addEventListener("DOMContentLoaded", function () {
+  // Meta
+  document.getElementById("page-title").textContent = pageContent.meta.title;
+
+  // Header
+  document.getElementById("logo-main").innerHTML = pageContent.header.logoMain;
+  document.getElementById("tagline").textContent = pageContent.header.tagline;
+
+  // Hero
+  const heroTitle = document.getElementById("hero-title");
+  heroTitle.textContent = pageContent.hero.title;
+  heroTitle.setAttribute("data-text", pageContent.hero.title);
+  document.getElementById("hero-subtitle").innerHTML =
+    pageContent.hero.subtitle;
+
+  // Services - Engineering
+  document.getElementById("service-eng-title").textContent =
+    pageContent.services.engineering.title;
+  const engList = document.getElementById("service-eng-list");
+  pageContent.services.engineering.items.forEach((item) => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    engList.appendChild(li);
+  });
+
+  // Services - Product
+  document.getElementById("service-prod-title").textContent =
+    pageContent.services.product.title;
+  const prodList = document.getElementById("service-prod-list");
+  pageContent.services.product.items.forEach((item) => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    prodList.appendChild(li);
+  });
+
+  // Approach
+  document.getElementById("approach-title").textContent =
+    pageContent.approach.title;
+  document.getElementById("phase-1-title").textContent =
+    pageContent.approach.phases[0].title;
+  document.getElementById("phase-1-desc").textContent =
+    pageContent.approach.phases[0].description;
+  document.getElementById("phase-2-title").textContent =
+    pageContent.approach.phases[1].title;
+  document.getElementById("phase-2-desc").textContent =
+    pageContent.approach.phases[1].description;
+  document.getElementById("phase-3-title").textContent =
+    pageContent.approach.phases[2].title;
+  document.getElementById("phase-3-desc").textContent =
+    pageContent.approach.phases[2].description;
+
+  // CTA
+  document.getElementById("cta-title").textContent = pageContent.cta.title;
+  document.getElementById("cta-button-text").textContent =
+    pageContent.cta.buttonText;
+
+  // Footer
+  document.getElementById("footer-text").textContent = pageContent.footer.text;
+});
+
+// Export for use in other scripts
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = pageContent;
+}
+
+
 // Smooth scroll behavior
 document.addEventListener('DOMContentLoaded', function() {
     // Add entrance animations on scroll
@@ -606,14 +764,18 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 100);
 
             // In a real implementation, this would open a contact form or mailto link
-            alert('Contact functionality would be implemented here.\n\nFor now, reach out to discuss optimizing your SDLC!');
+            if (typeof pageContent !== 'undefined' && pageContent.cta && pageContent.cta.contactMessage) {
+                alert(pageContent.cta.contactMessage);
+            } else {
+                alert('Contact functionality would be implemented here.\n\nFor now, reach out to discuss optimizing your SDLC!');
+            }
         });
     }
 
     // Add parallax effect to grid overlay
     let ticking = false;
     const gridOverlay = document.querySelector('.grid-overlay');
-    
+
     window.addEventListener('scroll', function() {
         if (!ticking) {
             window.requestAnimationFrame(function() {
@@ -638,16 +800,16 @@ document.addEventListener('DOMContentLoaded', function() {
             const rect = this.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            
+
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
-            
+
             const deltaX = (x - centerX) / centerX;
             const deltaY = (y - centerY) / centerY;
-            
+
             this.style.transform = `
-                translateY(-5px) 
-                rotateY(${deltaX * 5}deg) 
+                translateY(-5px)
+                rotateY(${deltaX * 5}deg)
                 rotateX(${-deltaY * 5}deg)
             `;
         });
@@ -690,7 +852,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.addEventListener('mousemove', function(e) {
         cursorTrail.push({ x: e.clientX, y: e.clientY, time: Date.now() });
-        
+
         // Limit trail length
         if (cursorTrail.length > trailLength) {
             cursorTrail.shift();
@@ -709,7 +871,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const text = tagline.textContent;
         tagline.textContent = '';
         tagline.style.opacity = '1';
-        
+
         let i = 0;
         const typingInterval = setInterval(() => {
             if (i < text.length) {
@@ -724,11 +886,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Easter egg: Konami code
     let konamiCode = [];
     const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
-    
+
     document.addEventListener('keydown', function(e) {
         konamiCode.push(e.key);
         konamiCode = konamiCode.slice(-konamiSequence.length);
-        
+
         if (konamiCode.join(',') === konamiSequence.join(',')) {
             document.body.style.animation = 'rainbow 2s infinite';
             setTimeout(() => {
@@ -738,38 +900,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Add pulse animation to CSS dynamically
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes pulse {
-        0%, 100% {
-            transform: scale(1);
-            opacity: 0.3;
-        }
-        50% {
-            transform: scale(1.1);
-            opacity: 0.6;
-        }
-    }
-    
-    @keyframes glitch-text {
-        0%, 100% {
-            transform: translate(0);
-        }
-        25% {
-            transform: translate(-2px, 2px);
-        }
-        75% {
-            transform: translate(2px, -2px);
-        }
-    }
-    
-    @keyframes rainbow {
-        0% { filter: hue-rotate(0deg); }
-        100% { filter: hue-rotate(360deg); }
-    }
-`;
-document.head.appendChild(style);
     </script>
 </body>
 </html>
